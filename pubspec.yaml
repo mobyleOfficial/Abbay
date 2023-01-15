@@ -19,6 +19,9 @@ dependencies:
   freezed: ^2.3.2
   focus_detector: ^2.0.1
   hive: ^2.2.3
+  audio_service: ^0.18.9
+  audio_session: ^0.1.13
+  just_audio: ^0.9.31
 
   flutter:
     sdk: flutter

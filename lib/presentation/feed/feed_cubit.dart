@@ -2,7 +2,7 @@ import 'package:abbay/domain/usecase/get_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_audiobooks_location.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:io' as io;
+import 'dart:io';
 import 'state/feed_ui_state.dart';
 
 class FeedCubit extends Cubit<FeedUiState> {
@@ -48,7 +48,7 @@ class FeedCubit extends Cubit<FeedUiState> {
     if(filePath.isEmpty) {
       emit(const NoLocationSelected());
     } else {
-      final filesList = io.Directory(filePath).listSync();
+      final filesList = Directory(filePath).listSync();
       emit(Success(filesList));
     }
   }
