@@ -2,7 +2,6 @@ import 'package:abbay/presentation/audiobook/audiobook_cubit.dart';
 import 'package:abbay/presentation/audiobook/state/audiobook_ui_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 
 class AudiobookPage extends StatefulWidget {
   const AudiobookPage({

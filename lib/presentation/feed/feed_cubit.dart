@@ -1,14 +1,15 @@
+import 'dart:core';
+import 'dart:io';
+
 import 'package:abbay/domain/model/audiobook.dart';
 import 'package:abbay/domain/usecase/get_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_current_audiobook.dart';
 import 'package:abbay/presentation/mini_player/mini_player_cubit.dart';
-import 'package:abbay/presentation/mini_player/state/mini_player_ui_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:io';
+
 import 'state/feed_ui_state.dart';
-import 'dart:core';
 
 class FeedCubit extends Cubit<FeedUiState> {
   FeedCubit({

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:abbay/domain/usecase/get_audiobooks_location.dart';
-import 'package:abbay/domain/usecase/get_current_audiobook.dart';
 import 'package:abbay/domain/usecase/save_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_current_audiobook.dart';
 import 'package:abbay/presentation/feed/feed_cubit.dart';
@@ -11,7 +10,6 @@ import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:focus_detector/focus_detector.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
