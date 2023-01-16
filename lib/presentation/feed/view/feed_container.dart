@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:abbay/domain/usecase/get_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_audiobooks_location.dart';
+import 'package:abbay/domain/usecase/save_current_audiobook.dart';
 import 'package:abbay/presentation/feed/feed_cubit.dart';
 import 'package:abbay/presentation/feed/state/feed_ui_state.dart';
+import 'package:abbay/presentation/mini_player/mini_player_cubit.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,18 +21,24 @@ class FeedContainer extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static Widget create() =>
-      ProxyProvider2<GetAudioBooksLocation, SaveAudioBooksLocation, FeedCubit>(
+  static Widget create() => ProxyProvider3<
+          GetAudioBooksLocation,
+          SaveAudioBooksLocation,
+          SaveCurrentAudioBook,
+          FeedCubit>(
         update: (
-          _,
+          context,
           getAudioBooksLocation,
           saveAudioBooksLocation,
+          saveCurrentAudioBook,
           bloc,
         ) =>
             bloc ??
             FeedCubit(
               getAudioBooksLocation: getAudioBooksLocation,
               saveAudioBooksLocation: saveAudioBooksLocation,
+              saveCurrentAudiobook: saveCurrentAudioBook,
+              miniPlayerBloc: Provider.of<MiniPlayerCubit>(context),
             ),
         child: Consumer<FeedCubit>(
           builder: (_, bloc, __) => FeedContainer(
@@ -62,7 +70,10 @@ class FeedContainer extends StatelessWidget {
                 bloc: bloc,
                 builder: (_, FeedUiState state) => Container(
                   child: state.maybeWhen(
-                    success: (fileList) => FeedPage(filesList: fileList),
+                    success: (fileList) => FeedPage(
+                      filesList: fileList,
+                      bloc: bloc,
+                    ),
                     noAudioBooks: () => Container(),
                     failure: (_) => Container(),
                     noPermissionGranted: () => _NoPermissionEmptyState(

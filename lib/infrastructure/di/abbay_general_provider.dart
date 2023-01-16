@@ -1,4 +1,6 @@
+import 'package:abbay/infrastructure/di/bloc_provider.dart';
 import 'package:abbay/infrastructure/di/local_data_source_provider.dart';
+import 'package:abbay/infrastructure/di/player_provider.dart';
 import 'package:abbay/infrastructure/di/repository_provider.dart';
 import 'package:abbay/infrastructure/di/use_case_provider.dart';
 import 'package:flutter/widgets.dart';
@@ -15,9 +17,11 @@ class AbbayGeneralProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
+          ...providePlayer(),
           ...provideLocalDataSources(),
           ...provideRepositories(),
-          ...provideUseCases()
+          ...provideUseCases(),
+          ...provideBlocs(),
         ],
         child: builder(context),
       );
