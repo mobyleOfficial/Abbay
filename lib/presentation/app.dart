@@ -1,8 +1,8 @@
+import 'package:abbay/domain/model/audiobook.dart';
 import 'package:abbay/infrastructure/routes.dart';
 import 'package:abbay/presentation/audiobook/view/audiobook_container.dart';
-import 'package:abbay/presentation/feed/view/feed_container.dart';
-import 'package:abbay/presentation/feed/view/feed_page.dart';
 import 'package:abbay/presentation/main/main_container.dart';
+import 'package:abbay/presentation/mini_player/view/mini_player_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,6 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        onGenerateRoute: (RouteSettings routeSettings) =>
+            MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) {
+            switch (routeSettings.name) {
+              default:
+                return Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.red,
+                );
+            }
+          },
+        ),
         home: Stack(
           children: [
             MaterialApp(
@@ -38,7 +52,7 @@ class MyApp extends StatelessWidget {
                 builder: (BuildContext context) {
                   switch (routeSettings.name) {
                     case initialRoute:
-                      return MainContainer();
+                      return const MainContainer();
                     case audiobookRoute:
                       {
                         final args = routeSettings.arguments as String;
@@ -52,18 +66,16 @@ class MyApp extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: FloatingPlayer(),
+              child: MiniPlayerContainer.create(
+                Audiobook(
+                  path: "path",
+                  name: "name",
+                  imageUrl: "imageUrl",
+                  totalTime: 10,
+                ),
+              ),
             ),
           ],
         ),
-      );
-}
-
-class FloatingPlayer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Container(
-        color: Colors.amber,
-        width: MediaQuery.of(context).size.width,
-        height: 100,
       );
 }

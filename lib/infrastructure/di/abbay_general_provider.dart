@@ -1,3 +1,4 @@
+import 'package:abbay/infrastructure/di/bloc_provider.dart';
 import 'package:abbay/infrastructure/di/local_data_source_provider.dart';
 import 'package:abbay/infrastructure/di/player_provider.dart';
 import 'package:abbay/infrastructure/di/repository_provider.dart';
@@ -19,7 +20,8 @@ class AbbayGeneralProvider extends StatelessWidget {
           ...providePlayer(),
           ...provideLocalDataSources(),
           ...provideRepositories(),
-          ...provideUseCases()
+          ...provideUseCases(),
+          ...provideBlocs(),
         ],
         child: builder(context),
       );
