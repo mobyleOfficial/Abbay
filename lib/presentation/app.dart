@@ -66,14 +66,7 @@ class MyApp extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: MiniPlayerContainer.create(
-                Audiobook(
-                  path: "path",
-                  name: "name",
-                  imageUrl: "imageUrl",
-                  totalTime: 10,
-                ),
-              ),
+              child: MiniPlayerContainer.create(),
             ),
           ],
         ),

@@ -23,7 +23,7 @@ class MiniPlayerCubit extends Cubit<MiniPlayerUiState> {
       emit(const HidePlayerAction());
     } else {
       _audiobook = audiobook;
-      emit(const ShowPlayerAction());
+      emit(ShowPlayerAction(audiobook));
     }
   }
 

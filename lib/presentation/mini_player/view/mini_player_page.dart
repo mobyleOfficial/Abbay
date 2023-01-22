@@ -33,13 +33,17 @@ class _MiniPlayerPageState extends State<MiniPlayerPage> {
         color: Colors.red,
         child: Row(
           children: [
-            Expanded(
-              child: MaterialButton(
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  "d",
-                ),
-                child: Text("OPEN"),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(
+                context,
+                "",
+              ),
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: _audiobook.imageUrl == null
+                    ? Container()
+                    : Image.memory(_audiobook.imageUrl!),
               ),
             ),
             Expanded(

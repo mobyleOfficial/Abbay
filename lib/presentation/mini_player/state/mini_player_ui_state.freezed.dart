@@ -20,7 +20,7 @@ mixin _$MiniPlayerUiState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() audiobookFound,
-    required TResult Function() showPlayerAction,
+    required TResult Function(Audiobook audiobook) showPlayerAction,
     required TResult Function() hidePlayerAction,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$MiniPlayerUiState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? audiobookFound,
-    TResult? Function()? showPlayerAction,
+    TResult? Function(Audiobook audiobook)? showPlayerAction,
     TResult? Function()? hidePlayerAction,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$MiniPlayerUiState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? audiobookFound,
-    TResult Function()? showPlayerAction,
+    TResult Function(Audiobook audiobook)? showPlayerAction,
     TResult Function()? hidePlayerAction,
     required TResult orElse(),
   }) =>
@@ -124,7 +124,7 @@ class _$Idle implements Idle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() audiobookFound,
-    required TResult Function() showPlayerAction,
+    required TResult Function(Audiobook audiobook) showPlayerAction,
     required TResult Function() hidePlayerAction,
   }) {
     return idle();
@@ -135,7 +135,7 @@ class _$Idle implements Idle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? audiobookFound,
-    TResult? Function()? showPlayerAction,
+    TResult? Function(Audiobook audiobook)? showPlayerAction,
     TResult? Function()? hidePlayerAction,
   }) {
     return idle?.call();
@@ -146,7 +146,7 @@ class _$Idle implements Idle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? audiobookFound,
-    TResult Function()? showPlayerAction,
+    TResult Function(Audiobook audiobook)? showPlayerAction,
     TResult Function()? hidePlayerAction,
     required TResult orElse(),
   }) {
@@ -238,7 +238,7 @@ class _$AudiobookFound implements AudiobookFound {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() audiobookFound,
-    required TResult Function() showPlayerAction,
+    required TResult Function(Audiobook audiobook) showPlayerAction,
     required TResult Function() hidePlayerAction,
   }) {
     return audiobookFound();
@@ -249,7 +249,7 @@ class _$AudiobookFound implements AudiobookFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? audiobookFound,
-    TResult? Function()? showPlayerAction,
+    TResult? Function(Audiobook audiobook)? showPlayerAction,
     TResult? Function()? hidePlayerAction,
   }) {
     return audiobookFound?.call();
@@ -260,7 +260,7 @@ class _$AudiobookFound implements AudiobookFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? audiobookFound,
-    TResult Function()? showPlayerAction,
+    TResult Function(Audiobook audiobook)? showPlayerAction,
     TResult Function()? hidePlayerAction,
     required TResult orElse(),
   }) {
@@ -317,6 +317,8 @@ abstract class _$$ShowPlayerActionCopyWith<$Res> {
   factory _$$ShowPlayerActionCopyWith(
           _$ShowPlayerAction value, $Res Function(_$ShowPlayerAction) then) =
       __$$ShowPlayerActionCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Audiobook audiobook});
 }
 
 /// @nodoc
@@ -326,36 +328,61 @@ class __$$ShowPlayerActionCopyWithImpl<$Res>
   __$$ShowPlayerActionCopyWithImpl(
       _$ShowPlayerAction _value, $Res Function(_$ShowPlayerAction) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audiobook = null,
+  }) {
+    return _then(_$ShowPlayerAction(
+      null == audiobook
+          ? _value.audiobook
+          : audiobook // ignore: cast_nullable_to_non_nullable
+              as Audiobook,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ShowPlayerAction implements ShowPlayerAction {
-  const _$ShowPlayerAction();
+  const _$ShowPlayerAction(this.audiobook);
+
+  @override
+  final Audiobook audiobook;
 
   @override
   String toString() {
-    return 'MiniPlayerUiState.showPlayerAction()';
+    return 'MiniPlayerUiState.showPlayerAction(audiobook: $audiobook)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowPlayerAction);
+        (other.runtimeType == runtimeType &&
+            other is _$ShowPlayerAction &&
+            (identical(other.audiobook, audiobook) ||
+                other.audiobook == audiobook));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, audiobook);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowPlayerActionCopyWith<_$ShowPlayerAction> get copyWith =>
+      __$$ShowPlayerActionCopyWithImpl<_$ShowPlayerAction>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() audiobookFound,
-    required TResult Function() showPlayerAction,
+    required TResult Function(Audiobook audiobook) showPlayerAction,
     required TResult Function() hidePlayerAction,
   }) {
-    return showPlayerAction();
+    return showPlayerAction(audiobook);
   }
 
   @override
@@ -363,10 +390,10 @@ class _$ShowPlayerAction implements ShowPlayerAction {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? audiobookFound,
-    TResult? Function()? showPlayerAction,
+    TResult? Function(Audiobook audiobook)? showPlayerAction,
     TResult? Function()? hidePlayerAction,
   }) {
-    return showPlayerAction?.call();
+    return showPlayerAction?.call(audiobook);
   }
 
   @override
@@ -374,12 +401,12 @@ class _$ShowPlayerAction implements ShowPlayerAction {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? audiobookFound,
-    TResult Function()? showPlayerAction,
+    TResult Function(Audiobook audiobook)? showPlayerAction,
     TResult Function()? hidePlayerAction,
     required TResult orElse(),
   }) {
     if (showPlayerAction != null) {
-      return showPlayerAction();
+      return showPlayerAction(audiobook);
     }
     return orElse();
   }
@@ -423,7 +450,13 @@ class _$ShowPlayerAction implements ShowPlayerAction {
 }
 
 abstract class ShowPlayerAction implements MiniPlayerUiState {
-  const factory ShowPlayerAction() = _$ShowPlayerAction;
+  const factory ShowPlayerAction(final Audiobook audiobook) =
+      _$ShowPlayerAction;
+
+  Audiobook get audiobook;
+  @JsonKey(ignore: true)
+  _$$ShowPlayerActionCopyWith<_$ShowPlayerAction> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -466,7 +499,7 @@ class _$HidePlayerAction implements HidePlayerAction {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() audiobookFound,
-    required TResult Function() showPlayerAction,
+    required TResult Function(Audiobook audiobook) showPlayerAction,
     required TResult Function() hidePlayerAction,
   }) {
     return hidePlayerAction();
@@ -477,7 +510,7 @@ class _$HidePlayerAction implements HidePlayerAction {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? audiobookFound,
-    TResult? Function()? showPlayerAction,
+    TResult? Function(Audiobook audiobook)? showPlayerAction,
     TResult? Function()? hidePlayerAction,
   }) {
     return hidePlayerAction?.call();
@@ -488,7 +521,7 @@ class _$HidePlayerAction implements HidePlayerAction {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? audiobookFound,
-    TResult Function()? showPlayerAction,
+    TResult Function(Audiobook audiobook)? showPlayerAction,
     TResult Function()? hidePlayerAction,
     required TResult orElse(),
   }) {

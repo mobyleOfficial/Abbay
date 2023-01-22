@@ -6,7 +6,7 @@ extension AudiobookEntityExtensions on Audiobook {
         path: path,
         name: name,
         imageUrl: imageUrl,
-        timeListened: 0.0,
+        timeListened: 0,
         totalTime: totalTime,
       );
 }

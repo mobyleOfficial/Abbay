@@ -51,6 +51,9 @@ class FeedContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text("Abbay"),
+    ),
         body: FocusDetector(
           onFocusGained: () {
             _requestPermission();
@@ -68,25 +71,31 @@ class FeedContainer extends StatelessWidget {
               listenWhen: (_, state) => state is RequestFileLocationAction,
               child: BlocBuilder<FeedCubit, FeedUiState>(
                 bloc: bloc,
-                builder: (_, FeedUiState state) => Container(
-                  child: state.maybeWhen(
-                    success: (fileList) => FeedPage(
-                      filesList: fileList,
-                      bloc: bloc,
-                    ),
-                    noAudioBooks: () => Container(),
-                    failure: (_) => Container(),
-                    noPermissionGranted: () => _NoPermissionEmptyState(
-                      requestPermission: (status) async {
-                        openAppSettings();
-                      },
-                    ),
-                    noLocationSelected: () => _NoLocationEmptyState(
-                      selectLocation: () => _choseFilesFolder(context),
-                    ),
-                    orElse: () => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                builder: (_, FeedUiState state) => state.maybeWhen(
+                  success: (fileList) => FeedPage(
+                    filesList: fileList,
+                    bloc: bloc,
+                  ),
+                  noAudioBooks: () => Container(
+                    width: MediaQuery.of(context).size.width,
+                    height:  MediaQuery.of(context).size.height,
+                    color: Colors.green,
+                  ),
+                  failure: (_) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    height:  MediaQuery.of(context).size.height,
+                    color: Colors.red,
+                  ),
+                  noPermissionGranted: () => _NoPermissionEmptyState(
+                    requestPermission: (status) async {
+                      openAppSettings();
+                    },
+                  ),
+                  noLocationSelected: () => _NoLocationEmptyState(
+                    selectLocation: () => _choseFilesFolder(context),
+                  ),
+                  orElse: () => const Center(
+                    child: CircularProgressIndicator(),
                   ),
                 ),
               ),

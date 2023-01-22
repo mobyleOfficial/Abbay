@@ -7,6 +7,7 @@ import 'package:abbay/domain/usecase/save_audiobooks_location.dart';
 import 'package:abbay/domain/usecase/save_current_audiobook.dart';
 import 'package:abbay/presentation/mini_player/mini_player_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'state/feed_ui_state.dart';
@@ -23,7 +24,7 @@ class FeedCubit extends Cubit<FeedUiState> {
   final SaveAudioBooksLocation saveAudioBooksLocation;
   final SaveCurrentAudioBook saveCurrentAudiobook;
   final MiniPlayerCubit miniPlayerBloc;
-  List<FileSystemEntity> filesList = [];
+  List<Audiobook> filesList = [];
 
   void changePermissionStatus(PermissionStatus status) {
     switch (status) {
@@ -60,27 +61,61 @@ class FeedCubit extends Cubit<FeedUiState> {
     if (filePath.isEmpty) {
       emit(const NoLocationSelected());
     } else {
-      filesList.addAll(Directory(filePath).listSync());
+      final directoryList = Directory(filePath).listSync();
+      final mappedList = directoryList
+          .where(
+            (folder) => _hasAudiobookInFolder(folder.path),
+          )
+          .map(
+            (folder) => _mapFolderToFile(folder.path),
+          )
+          .map(
+        (file) async {
+          final metadata = await MetadataRetriever.fromFile(
+            File(file.path),
+          );
 
+          return Audiobook(
+            path: file.path,
+            name: metadata.trackName ?? "",
+            imageUrl: metadata.albumArt,
+            timeListened: 0,
+            totalTime: metadata.trackDuration ?? 0,
+          );
+        },
+      ).toList();
+
+      final tempFileList = await Future.wait(mappedList);
+      filesList.addAll(tempFileList);
       emit(Success(filesList));
     }
   }
 
-  Future<void> selectAudiobook(int index) async {
-    final filePath = Directory(filesList[index].path)
-        .listSync()
-        .where(
-          (file) => (file.path.contains(".m4b") || file.path.contains(".mp3")),
-        )
-        .first;
+  FileSystemEntity _mapFolderToFile(String folderPath) => Directory(folderPath)
+      .listSync()
+      .where(
+        (file) => (file.path.contains(".m4b") || file.path.contains(".mp3")),
+      )
+      .first;
 
+  bool _hasAudiobookInFolder(String folderPath) => Directory(folderPath)
+      .listSync()
+      .where(
+        (file) => (file.path.contains(".m4b") || file.path.contains(".mp3")),
+      )
+      .isNotEmpty;
+
+  Future<void> selectAudiobook(int index) async {
     try {
+      final file = filesList[index];
+
       await saveCurrentAudiobook(
         Audiobook(
-          path: filePath.path,
-          name: "",
-          imageUrl: "imageUrl",
-          totalTime: 100,
+          path: file.path,
+          name: file.name,
+          imageUrl: file.imageUrl,
+          timeListened: file.timeListened,
+          totalTime: file.totalTime,
         ),
       );
 
