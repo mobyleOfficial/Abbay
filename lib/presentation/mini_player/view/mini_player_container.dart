@@ -1,4 +1,3 @@
-import 'package:abbay/domain/model/audiobook.dart';
 import 'package:abbay/presentation/mini_player/mini_player_cubit.dart';
 import 'package:abbay/presentation/mini_player/state/mini_player_ui_state.dart';
 import 'package:abbay/presentation/mini_player/view/mini_player_page.dart';
@@ -9,19 +8,16 @@ import 'package:provider/provider.dart';
 class MiniPlayerContainer extends StatefulWidget {
   const MiniPlayerContainer({
     required this.bloc,
-    required this.audiobook,
     Key? key,
   }) : super(key: key);
 
-  static Widget create(Audiobook audiobook) => Consumer<MiniPlayerCubit>(
+  static Widget create() => Consumer<MiniPlayerCubit>(
         builder: (_, bloc, __) => MiniPlayerContainer(
           bloc: bloc,
-          audiobook: audiobook,
         ),
       );
 
   final MiniPlayerCubit bloc;
-  final Audiobook audiobook;
 
   @override
   State<StatefulWidget> createState() => _MiniPlayerContainerState();
@@ -29,8 +25,6 @@ class MiniPlayerContainer extends StatefulWidget {
 
 class _MiniPlayerContainerState extends State<MiniPlayerContainer> {
   MiniPlayerCubit get _bloc => widget.bloc;
-
-  Audiobook get _audiobook => widget.audiobook;
 
   @override
   void initState() {
@@ -45,9 +39,9 @@ class _MiniPlayerContainerState extends State<MiniPlayerContainer> {
         bloc: _bloc,
         builder: (_, MiniPlayerUiState state) {
           return state.maybeWhen(
-            showPlayerAction: () => MiniPlayerPage(
+            showPlayerAction: (audiobook) => MiniPlayerPage(
               bloc: _bloc,
-              audiobook: _audiobook,
+              audiobook: audiobook,
             ),
             hidePlayerAction: () => const SizedBox.shrink(),
             orElse: () => const SizedBox.shrink(),

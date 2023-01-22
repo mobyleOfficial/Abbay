@@ -19,7 +19,7 @@ mixin _$FeedUiState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -30,7 +30,7 @@ mixin _$FeedUiState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -41,7 +41,7 @@ mixin _$FeedUiState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -144,7 +144,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -158,7 +158,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -172,7 +172,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -245,7 +245,7 @@ abstract class _$$SuccessCopyWith<$Res> {
   factory _$$SuccessCopyWith(_$Success value, $Res Function(_$Success) then) =
       __$$SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<FileSystemEntity> data});
+  $Res call({List<Audiobook> data});
 }
 
 /// @nodoc
@@ -264,7 +264,7 @@ class __$$SuccessCopyWithImpl<$Res>
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<FileSystemEntity>,
+              as List<Audiobook>,
     ));
   }
 }
@@ -272,11 +272,11 @@ class __$$SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success implements Success {
-  const _$Success(final List<FileSystemEntity> data) : _data = data;
+  const _$Success(final List<Audiobook> data) : _data = data;
 
-  final List<FileSystemEntity> _data;
+  final List<Audiobook> _data;
   @override
-  List<FileSystemEntity> get data {
+  List<Audiobook> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -309,7 +309,7 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -323,7 +323,7 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -337,7 +337,7 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -402,9 +402,9 @@ class _$Success implements Success {
 }
 
 abstract class Success implements FeedUiState {
-  const factory Success(final List<FileSystemEntity> data) = _$Success;
+  const factory Success(final List<Audiobook> data) = _$Success;
 
-  List<FileSystemEntity> get data;
+  List<Audiobook> get data;
   @JsonKey(ignore: true)
   _$$SuccessCopyWith<_$Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -473,7 +473,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -487,7 +487,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -501,7 +501,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -613,7 +613,7 @@ class _$NoAudioBooks implements NoAudioBooks {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -627,7 +627,7 @@ class _$NoAudioBooks implements NoAudioBooks {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -641,7 +641,7 @@ class _$NoAudioBooks implements NoAudioBooks {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -748,7 +748,7 @@ class _$NoPermission implements NoPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -762,7 +762,7 @@ class _$NoPermission implements NoPermission {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -776,7 +776,7 @@ class _$NoPermission implements NoPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -883,7 +883,7 @@ class _$NoLocationSelected implements NoLocationSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -897,7 +897,7 @@ class _$NoLocationSelected implements NoLocationSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -911,7 +911,7 @@ class _$NoLocationSelected implements NoLocationSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,
@@ -1020,7 +1020,7 @@ class _$RequestFileLocationAction implements RequestFileLocationAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<FileSystemEntity> data) success,
+    required TResult Function(List<Audiobook> data) success,
     required TResult Function(AbbayErrors error) failure,
     required TResult Function() noAudioBooks,
     required TResult Function() noPermissionGranted,
@@ -1034,7 +1034,7 @@ class _$RequestFileLocationAction implements RequestFileLocationAction {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<FileSystemEntity> data)? success,
+    TResult? Function(List<Audiobook> data)? success,
     TResult? Function(AbbayErrors error)? failure,
     TResult? Function()? noAudioBooks,
     TResult? Function()? noPermissionGranted,
@@ -1048,7 +1048,7 @@ class _$RequestFileLocationAction implements RequestFileLocationAction {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<FileSystemEntity> data)? success,
+    TResult Function(List<Audiobook> data)? success,
     TResult Function(AbbayErrors error)? failure,
     TResult Function()? noAudioBooks,
     TResult Function()? noPermissionGranted,

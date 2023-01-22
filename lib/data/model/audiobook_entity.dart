@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
 part 'audiobook_entity.g.dart';
@@ -19,11 +20,11 @@ class AudiobookEntity extends HiveObject {
   final String name;
 
   @HiveField(2)
-  final String imageUrl;
+  final Uint8List? imageUrl;
 
   @HiveField(3)
-  final double timeListened;
+  final int timeListened;
 
   @HiveField(4)
-  final double totalTime;
+  final int totalTime;
 }
